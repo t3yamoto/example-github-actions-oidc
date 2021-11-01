@@ -21,8 +21,8 @@ jobs:
         with:
           role-to-assume: ${{secrets.ROLE_ARN}}
           role-session-name: samplerolesession
-          aws-region: $
+          aws-region: ${{env.AWS_REGION}}
       # Upload a file to AWS s3
       - name:  Copy index.html to s3
         run: |
-          aws s3 cp ./index.html s3://$/
+          aws s3 cp ./index.html s3://${{env.BUCKET_NAME}}/
