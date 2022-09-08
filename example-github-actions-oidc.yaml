@@ -7,6 +7,10 @@ Parameters:
     Description: Arn for the GitHub OIDC Provider.
     Default: ""
     Type: String
+  GitHubOIDCThumbprint:
+    Description: GitHub OIDC thumbprint. see also https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc_verify-thumbprint.html
+    Default: 6938fd4d98bab03faadb97b34396831e3780aea1
+    Type: String
 
 Conditions:
   CreateOIDCProvider: !Equals 
@@ -40,8 +44,8 @@ Resources:
       ClientIdList: 
         - sts.amazonaws.com
       ThumbprintList:
-        - a031c46782e6e6c662c2c87c76da9aa62ccabd8e
+        - !Ref GitHubOIDCThumbprint
 
 Outputs:
   Role:
-    Value: !GetAtt Role.Arn 
+    Value: !GetAtt Role.Arn
